@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChikoGram</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="auth-screen" class="screen">
+            <div class="auth-card">
+                <img src="verify.png" width="50" alt="Logo">
+                <h2>ChikoGram</h2>
+                <input type="email" id="email" placeholder="Ваш Email">
+                <input type="password" id="password" placeholder="Пароль">
+                <button onclick="login()">Войти или Регистрация</button>
+            </div>
+        </div>
+
+        <div id="main-screen" class="screen" style="display:none;">
+            <header>
+                <div class="user-info">
+                    <span id="user-display-name">Загрузка...</span>
+                </div>
+                <div class="header-actions">
+                    <button id="admin-btn" style="display:none;" onclick="toggleAdminModal()">⚙️ Админ</button>
+                    <button onclick="logout()" class="exit-btn">Выйти</button>
+                </div>
+            </header>
+
+            <div class="chat-container">
+                <div id="messages-list"></div>
+                <div class="input-row">
+                    <input type="text" id="msg-input" placeholder="Напишите сообщение...">
+                    <button onclick="sendMessage()">➤</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="admin-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <h3>Управление пользователем</h3>
+                <input type="text" id="target-uid" placeholder="UID пользователя">
+                <div class="admin-buttons">
+                    <button onclick="setVerification(true)" class="v-btn">✅ Дать галочку</button>
+                    <button onclick="setVerification(false)">❌ Убрать галочку</button>
+                    <hr>
+                    <button onclick="giveGift('rocket')">🎁 Подарить Ракету</button>
+                    <button onclick="giveGift('gem')">🎁 Подарить Алмаз</button>
+                </div>
+                <button onclick="toggleAdminModal()" class="close-btn">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
